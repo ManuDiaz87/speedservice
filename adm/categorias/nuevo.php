@@ -38,22 +38,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 ?>
 
 <section class="alta-categorias">
-    <div class="container py-3">
-        <h1 class="text-center">Nueva Categoría</h1>
+    <div class="container py-4">
+        <h1 class="text-center">Nueva categoría</h1>
 
-        <div class="row">
-            <form action="nuevo.php" method="POST" class="col-md-6 mx-auto" enctype="multipart/form-data">
+        <div class="row py-4">
+            <form action="nuevo.php" method="POST" class="col-md-6 mx-auto py-4 fondo-formulario" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="categoria">Nombre de la categoría:</label>
                     <input class="form-control" type="text" name="categoria" id="categoria">
                 </div>
 
                 <div class="mb-3">
-                    <label for="imagen">Imágen:</label>
+                    <label for="imagen">Imagen:</label>
                     <input class="form-control" type="file" name="imagen" id="imagen">
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-4">
                     <label for="descripcion">Descripción de la categoría:</label>
                     <textarea class="form-control" name="descripcion" id="descripcion" rows="5"></textarea>
                 </div>
@@ -64,7 +64,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         }              
                 ?>
 
-                <button class="btn btn-success" type="submit">Crear</button>
+                <button class="btn d-grid gap-2 col-5 mx-auto boton-crear-categoria" type="submit">Agregar categoría</button>
             </form>
         </div>
     </div>

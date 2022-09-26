@@ -15,15 +15,12 @@ require_once('includes/header.php');
 
 ?>
 
-
-
   <section class="seccion-bienvenida">
     <div class="contenedor">
       <h1>SpeedService</h1>
       <p><i>El sitio que te permite generar ganancias al volante y pedir un servicio ahora. </i></p>
       <div class="d-flex justify-content-center align-items-center">
         <a href="paginas/registro.php" class="me-4">Registrarse</a>
-        <a href="paginas/registro.php">Registrá tu servicio</a>
       </div>
     </div>
   </section>
@@ -36,19 +33,23 @@ require_once('includes/header.php');
 
       <?php
         foreach($categorias as $fila){
-          echo '
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <img src="img/categorias/'.$fila['imgCategoria'].'" class="card-img-top imagen-servicios" alt="remis">
-                <div class="card-body">
-                  <h5 class="card-title">'.ucfirst($fila['categoria']).'</h5>
-                  <p class="card-text"><i>'.$fila['descripcionCategoria'].'</i></p>
-                  <a href="paginas/servicios.php?idCategoria='.$fila['idCategoria'].'" class="btn d-grid gap-2 col-10 mx-auto boton-servicio">Ver más...</a>
+        
+            echo '
+              <div class="col-md-4 mb-3">
+                <div class="card">
+                  <img src="img/categorias/'.$fila['imgCategoria'].'" class="card-img-top imagen-servicios" alt="remis">
+                  <div class="card-body">
+                    <h5 class="card-title">'.ucfirst($fila['categoria']).'</h5>
+                    <p class="card-text"><i>'.$fila['descripcionCategoria'].'</i></p>
+                    
+                    <a href="paginas/servicios.php?idCategoria='.$fila['idCategoria'].'" class="btn d-grid gap-2 col-10 mx-auto boton-servicios">Ver más...</a>
+                    
+                    </div>
                 </div>
               </div>
-            </div>
-          ';
-        }
+            ';
+          }
+      
       ?>
 
       </div>

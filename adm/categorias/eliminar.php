@@ -32,23 +32,23 @@ require_once('../../includes/header.php');
 ?>
 
 <section class="alta-categorias">
-    <div class="container">
+    <div class="container py-5">
 
-        <h2 class="text-center">Eliminar Categorías</h2>
+        <h1 class="text-center">Eliminar Categoría</h1>
 
-        <div class="row">
+        <div class="row py-4">
             <form action="eliminar.php" method="POST" class="col-md-6 mx-auto form-eliminar">
                 <input type="hidden" name="idCategoria" value="<?php echo (isset($idCategoria)) ? $idCategoria : '' ?>">
 
-                <p>Está seguro que desea eliminar la categoría seleccionada?</p>
+                <p>¿Está seguro que desea eliminar la categoría seleccionada?</p>
 
                 <?php 
                         if(isset($notificacion)){
-                            echo '<p class="bg-danger text-white text-center">'.$notificacion.'</p>';
+                            echo '<p class="text-white text-center">'.$notificacion.'</p>';
                         }                 
                     ?>
 
-                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <button type="submit" class="btn d-grid gap-2 col-4 mx-auto boton-eliminar-categoria">Eliminar</button>
                 
             </form>
         </div>

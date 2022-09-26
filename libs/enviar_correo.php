@@ -24,10 +24,11 @@ function sendemail($codigo,$correo){
 	
 	$mail->Subject = 'CODIGO DE VERIFICACION';
 	$mail->msgHTML('ESTE ES EL CODIGO DE VERIFICACION "'.$codigo.'"');
+	
 	if(!$mail->send()) {
-		echo 'Hubo un error al enviar el correo, vuelva a intentar.';
+		return false;
 	}else{
-		echo 'Tu mensaje ha sido enviado.';
+		return true;
 	}
 }
 ?>

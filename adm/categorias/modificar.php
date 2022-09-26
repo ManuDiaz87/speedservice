@@ -50,11 +50,11 @@ require_once('../../includes/header.php');
 ?>
 
 <section class="alta-categorias">
-    <div class="container py-3">
+    <div class="container py-4">
         <h1 class="text-center">Modificar Categoría</h1>
 
-        <div class="row">
-            <form action="modificar.php" method="POST" class="col-md-6 mx-auto" enctype="multipart/form-data">
+        <div class="row py-4">
+            <form action="modificar.php" method="POST" class="col-md-6 mx-auto fondo-formulario" enctype="multipart/form-data">
                 <input type="hidden" name="idCategoria" value="<?php echo (isset($categoria)) ? $categoria['idCategoria'] : '' ?>">
                 <div class="mb-3">
                     <label for="categoria">Nombre de la categoría:</label>
@@ -62,8 +62,8 @@ require_once('../../includes/header.php');
                 </div>
 
                 <div class="mb-3">
-                    <label for="imagen">Imágen:</label>
-                    <img src="<?php echo RUTARAIZ . '/img/categorias/' . trim($categoria['imgCategoria'])?>" alt="" class="img-fluid">
+                    <label for="imagen">Imagen:</label>
+                    <img src="<?php echo RUTARAIZ . '/img/categorias/' . trim($categoria['imgCategoria'])?>" alt="" class="imagen-modificar-categoria">
                     <input class="form-control mt-2" type="file" name="imagen" id="imagen">
                     <input type="hidden" name="img-actual" value='<?php echo (isset($categoria)) ? $categoria['imgCategoria'] : '' ?>'>
                 </div>
@@ -79,7 +79,7 @@ require_once('../../includes/header.php');
                         }              
                 ?>
 
-                <button class="btn btn-success" type="submit">Modificar</button>
+                <button class="btn d-grid gap-2 col-5 mx-auto boton-crear-categoria" type="submit">Modificar</button>
             </form>
         </div>
     </div>

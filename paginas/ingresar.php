@@ -6,7 +6,7 @@ if(isset($_SESSION['idUsuario'])){
 }
 
 
-$pagina = 'registro';
+$pagina = 'login';
 require_once('../includes/config.php');
 require_once('../includes/conexion.php');
 require_once('../includes/header.php');
@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $passCliente = $_POST['passCliente'];
 
     if(empty($correoCliente) || empty($passCliente) ){
-        $notificacion = 'Error: no puede dejar campos vacios.';
+        $notificacion = 'Error: no puede dejar campos vacíos.';
     }else{
         $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE correo = :correo");  
         $stmt->execute(array(':correo' => $correoCliente)); 
@@ -62,7 +62,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                 <div class="col-md-5">
                     <h2 class="mb-1 text-center"><b>Ingresa tus datos y navega en la app</b></h2><br>
-                    <p class="text-center">¿Estás listo para tener una nueva experiencia?<br>
+                    <p class="text-center">¿Estás listo para una nueva experiencia?<br>
                         <i>Speedservice</i> te ofrece publicar o solicitar un remis, mandado o flete desde la web.</p>
                 </div>
 

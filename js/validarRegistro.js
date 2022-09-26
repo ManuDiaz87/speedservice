@@ -43,15 +43,17 @@ formularioRegistro.addEventListener('submit',(e) => {
 function validacionCorreo(){
     var codigo = rand_code('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',6),
     correo = document.getElementById('correoProveedor').value;
-
+    let btn = document.querySelector('#btnCodigo');
+    
     if(correo == ''){
-        alert('Tiene que completar el correo que va a ser enviado el codigo.');
+        alert('Tiene que completar el correo al que va a ser enviado el código.');
         return false;
     }
-    console.log(codigo+' Y CORREO '+correo);
+  //  console.log(codigo+' Y CORREO '+correo);
     var param = {'correo' : correo,
                 'codigo' : codigo}
-    console.log(param);
+  //  console.log(param);
+  
     $.ajax({
         url: '../ajax/ajax_enviar_codigo.php',
         type: 'POST',
@@ -60,7 +62,25 @@ function validacionCorreo(){
         },
         success: function(data){
             console.log(data);
-            alert(data);
+            if(data){
+                swal({
+                    title: "¡Correo enviado correctamente!",
+                    text: "Hemos enviado un código a su correo electrónico.",
+                    icon: 'success'
+                    });
+                    document.querySelector('#btnEnviar').classList.toggle('d-none');
+                    document.querySelector('#btnCodigo').classList.toggle('d-none');
+
+                    btn.disabled = true; 
+                    
+            }else{
+                swal({
+                    title: "Ha ocurrido un error",
+                    text: "No se ha procesado la solicitud, vuelva a intentarlo.",
+                    icon: 'error'
+                    });
+            }
+            
         },
         error: function(){
         }
