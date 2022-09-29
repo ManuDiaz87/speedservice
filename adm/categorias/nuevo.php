@@ -39,7 +39,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <section class="alta-categorias">
     <div class="container py-4">
-        <h1 class="text-center">Nueva categoría</h1>
+        <h1 class="text-center">Nueva Categoría</h1>
 
         <div class="row py-4">
             <form action="nuevo.php" method="POST" class="col-md-6 mx-auto py-4 fondo-formulario" enctype="multipart/form-data">

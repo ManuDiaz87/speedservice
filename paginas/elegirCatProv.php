@@ -20,9 +20,9 @@ require_once('../includes/header.php');
 
 <main class="cardProvedor">
 <div class="container">
-    <h1 class="text-center mb-4 text-light">¿Qué servicio querés ofrecer?</h1>
+    <h1 class="text-center text-light py-4">¿Qué servicio querés ofrecer?</h1>
       
-    <div class="row py-5">
+    <div class="row py-3">
 
         <?php
             foreach($categorias as $fila)

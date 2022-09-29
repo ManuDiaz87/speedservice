@@ -28,7 +28,7 @@ require_once('../../includes/header.php');
                         <th scope="col">Fecha de solicitud</th>
                         <th scope="col">Nombre del servicio</th>
                         <th scope="col">Categoría</th>
-                        <th scope="col">Estado de servicio</th>
+                        <th scope="col">Estado del servicio</th>
                         <th scope="col">Acción</th>
                     </tr>
                     
@@ -36,18 +36,26 @@ require_once('../../includes/header.php');
                 <tbody>
                     <?php
                         foreach ($servicios as $fila) {
+                            $originalDate = $fila['fechaAltaServicio'];
+                            $newDate = date("d-m-Y", strtotime($originalDate));
                             echo '
                                 <tr>
-                                    <td class="align-middle">'.$fila['fechaAltaServicio'].'</td>
+                                    <td class="align-middle">'.$newDate.'</td>
                                     <td class="align-middle">'.$fila['nombreServicio'].'</td>
-                                    <td class="align-middle">'.$fila['categoria'].'</td>
-                                    <td class="align-middle">'.$fila['estadoServicio'].'</td>
-                                    <td class="align-middle">
-                                        <a href="detalle.php?id='.$fila['idServicio'].'" class="icono-modificar"><i class="fa-regular fa-eye"></i></a>
-                                    </td>
-                                </tr>
-                            ';
-                        }
+                                    <td class="align-middle">'.$fila['categoria'].'</td>';
+                                    
+                                    if ($fila['idEstadoServicio'] == 1){ 
+                                        echo '<td class="align-middle text-warning fw-bold">'.$fila['estadoServicio'].'</td>';
+                                    }else if ($fila['idEstadoServicio'] == 3){ 
+                                        echo '<td class="align-middle text-danger fw-bold">'.$fila['estadoServicio'].'</td>';
+                                    }else{ 
+                                        echo '<td class="align-middle text-success fw-bold">'.$fila['estadoServicio'].'</td>';
+                                    }
+                                    
+                            echo '<td class="align-middle">
+                                    <a href="detalle.php?id='.$fila['idServicio'].'" class="icono-modificar"><i class="fa-regular fa-eye"></i></a></td>
+                                </tr>';
+                        }                       
                     ?>
                 </tbody>
 

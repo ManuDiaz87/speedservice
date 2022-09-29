@@ -204,7 +204,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }else if(exitoServidor)
     {
         alert(exitoServidor); 
-        window.location.href = '/proyectos/speedservice/paginas/ingresar.php';
+        window.location.href = '/paginas/ingresar.php';
         
     }
 

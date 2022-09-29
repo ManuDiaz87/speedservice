@@ -41,7 +41,7 @@ require_once('../../includes/header.php');
                                     <td class="align-middle">'.$fila['categoria'].'</td>
                                     <td class="align-middle">'.$fila['descripcionCategoria'].'</td>
                                     <td class="align-middle">
-                                        <a href="modificar.php?id='.$fila['idCategoria'].'" class="icono-modificar"><i class="fa-solid fa-gear"></i></a>
+                                        <a href="modificar.php?id='.$fila['idCategoria'].'" class="icono-modificar-verde"><i class="fa-solid fa-gear"></i></a>
                                         <a href="eliminar.php?id='.$fila['idCategoria'].'"  class="icono-eliminar"><i class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>

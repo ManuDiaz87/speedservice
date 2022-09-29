@@ -70,7 +70,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 if($resultado){
                     $notificacionExito = 'Éxito: Se ha procesado el servicio correctamente';
                 }else{
-                    $notificacion = 'Ha ocurrido un error al intentar cargar el servicio en la base de datos';
+                    $notificacion = 'Ha ocurrido un error al intentar cargar el servicio';
                 }
 
             }
@@ -92,9 +92,9 @@ require_once('../../includes/header.php');
             
            <div class="row align-items-center">
            
-               <div class="col-4 form-usuario">
+               <div class="col-4 form-usuario d-flex flex-column align-items-center">
                    <?php echo '<h3 class="texto-usuario text-center">'.'Bienvenid@, '  .$_SESSION['nombre'].'</h3>';?>
-                   <img src="<?php echo RUTARAIZ.'/img/usuarios/'.$_SESSION['imgUsuario'] ?>" alt="avatar" class="imagen_usuario">
+                   <img src="<?php echo RUTARAIZ.'/img/usuarios/'.$_SESSION['imgUsuario'] ?>" alt="avatar" class="imagen_usuario m-0">
                    <p class="text-center texto-usuario"><i>Ya puedes registrar tu servicio. Los datos ingresados serán validados por los administradores del sitio.</i></p>
                </div>
 
@@ -107,7 +107,7 @@ require_once('../../includes/header.php');
                 }                    
                 ?>
 
-               <form action="fletes.php" method="POST" enctype="multipart/form-data" id="formRegistro">
+               <form action="fletes.php" method="POST" enctype="multipart/form-data" id="formRegistroFletes">
 
                <div class="row" id="datosServicio">
                         <div class="col-12 col-md-6 arregloForm row">
@@ -178,16 +178,16 @@ require_once('../../includes/header.php');
                             <div class="col-12 col-md-6">
 
                                 <div class="mb-3">
-                                    <label for="polizaSeguro">Poliza de seguro:</label>
+                                    <label for="polizaSeguro">Póliza de seguro:</label>
                                     <input type="file" class="form-control" id="polizaSeguro" name="polizaSeguro" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="imgVTV">Imágen de VTV:</label>
+                                    <label for="imgVTV">Imagen de VTV:</label>
                                     <input type="file" class="form-control" id="imgVTV" name="imgVTV" required>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="descripcionVehiculo">Descripción del vehiculo:</label>
+                                    <label for="descripcionVehiculo">Descripción del vehículo:</label>
                                     <textarea name="descripcionVehiculo" id="descripcionVehiculo" rows="6" class="form-control" required></textarea>
                                 </div>
                             </div>
@@ -206,7 +206,14 @@ require_once('../../includes/header.php');
    </seccion>
 
 </main>
-
+<script>
+    let exitoServidor = "<?php echo (isset($notificacionExito)) ? $notificacionExito : '' ;?>";
+    if (exitoServidor){
+        alert(exitoServidor); 
+        window.location.href = '/speedservice/paginas/servicios.php';
+        
+    }
+</script>
 
 <script src="../../js/alta-fletes.js"></script>
 <?php 

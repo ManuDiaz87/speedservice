@@ -19,18 +19,24 @@ principal: #fa0050
 }
 .icono-eliminar{
     padding: 0.3rem 0.5rem;
-    background-color: #dc3545;
+    background-color: red;
     color: #fff;
     border-radius: 3px;
+}
+.icono-modificar-verde{
+    padding: 0.3rem 0.6rem;
+    background-color: green;
+    color: #fff;
+    border-radius: 20px;
 }
 .icono-modificar{
-    padding: 0.3rem 0.5rem;
-    background-color: #198754;
+    padding: 0.3rem 0.6rem;
+    background-color: #fa0050;
     color: #fff;
-    border-radius: 3px;
+    border-radius: 20px;
 }
-.icono-modificar:hover,.icono-eliminar:hover{
-    color: #fff;
+.icono-modificar:hover,.icono-eliminar:hover, .icono-modificar-verde:hover{
+    color: #f2f2f2;
     opacity: .7;
 }
 .form-eliminar{
@@ -343,7 +349,19 @@ footer .copyright{
 /* ADM DETALLE SERVICIO */
 .form-detalle label{
     min-width: 80px;
+    display: block;
+    padding: 7px;
 }
+.estado-servicio1{
+    color: green;
+}
+.estado-servicio2{
+    color: rgb(235, 235, 50);
+}
+.estado-servicio3{
+    color: red;
+}
+
 /* PAGINA SER PROVEEDOR */
 .pagina-proveedor{
     padding-top: 4.5rem!important;
@@ -383,14 +401,13 @@ footer .copyright{
     transition: all 1s ease;
 }
 .imagen_usuario{
-    margin: 5px;
-    min-width: 150px;
+    width: 150px;
     height: 150px;
     border-radius: 50%;
     justify-content: center;
     align-items: center;
-    margin-left: 120px;
     border: 2px solid #fa0050;
+    margin: 2rem 0;
 }
 .texto-usuario{
     color: #f2f2f2;
