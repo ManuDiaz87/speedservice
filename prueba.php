@@ -31,7 +31,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <section>
     <div class="container">
         
-        <form action="prueba.php" method="POST" enctype="multipart/form-data">
+        <form action="prueba.php" id="formPrueba"  method="POST" enctype="multipart/form-data">
 
 
         <div class="mb-3">
@@ -39,9 +39,39 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <input type="file" class="form-control" id="imgPerfil" name="imgPerfil">
         
         </div>
-    <button type="submit">Enviar</button>
+    <button type="submit" onclick="validar()">Enviar</button>
         </form>
     </div>
 </section>
 
-
+<script>
+    function validar() {
+  // Obtener nombre de archivo
+  let archivo = document.getElementById('imgPerfil').value,
+  // Obtener extensión del archivo
+      extension = archivo.substring(archivo.lastIndexOf('.'),archivo.length);
+      var tam= document.archivo.files[0].size;
+      switch (extension) {
+        case '.jpg':
+           
+            alert(tam) ;
+        break;
+            
+        case '.png':
+            alert('ES PNG') ;
+            break;
+        case '.jpeg':
+            alert('ES JPEG') ;
+            break;
+        
+        default:
+            alert ('ERROR INVALIDO');
+            break;
+    }
+ 
+      alert(extension);
+ 
+}
+    
+   
+</script>

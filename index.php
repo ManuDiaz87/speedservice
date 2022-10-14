@@ -40,14 +40,36 @@ require_once('includes/header.php');
                   <img src="img/categorias/'.$fila['imgCategoria'].'" class="card-img-top imagen-servicios" alt="remis">
                   <div class="card-body">
                     <h5 class="card-title">'.ucfirst($fila['categoria']).'</h5>
-                    <p class="card-text"><i>'.$fila['descripcionCategoria'].'</i></p>
-                    
-                    <a href="paginas/servicios.php?idCategoria='.$fila['idCategoria'].'" class="btn d-grid gap-2 col-10 mx-auto boton-servicios">Ver más...</a>
-                    
+                    <p class="card-text"><i>'.$fila['descripcionCategoria'].'</i></p>';
+
+                  if($fila['idCategoria'] == 1){
+                    echo '
+                      <a href="paginas/serviciosFlete.php" class="btn d-grid gap-2 col-10 mx-auto boton-servicios">Ver más...</a>
+                      
+                      </div>
+                      </div>
                     </div>
-                </div>
-              </div>
-            ';
+                  '; }
+                  if($fila['idCategoria'] == 2){
+                    echo '
+                      <a href="paginas/serviciosMandado.php" class="btn d-grid gap-2 col-10 mx-auto boton-servicios">Ver más...</a>
+                      
+                      </div>
+                      </div>
+                    </div>
+                  '; }
+                  if($fila['idCategoria'] == 3){
+                    echo '
+                      <a href="paginas/serviciosRemis.php" class="btn d-grid gap-2 col-10 mx-auto boton-servicios">Ver más...</a>
+                      
+                      </div>
+                      </div>
+                    </div>
+                  '; }
+                  
+                  
+                    
+             
           }
       
       ?>

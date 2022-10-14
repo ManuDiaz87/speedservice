@@ -85,7 +85,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             echo '<p class="bg-success text-white text-center">'.$notificacionExito.'</p>';
                         }                    
                     ?>
-                        <button type="submit" class="btn d-grid gap-2 col-6 mx-auto boton-servicio">Enviar solicitud</button>
+                        <button type="submit" class="btn d-grid gap-2 col-6 mx-auto boton-servicios">Enviar solicitud</button>
                     </form>
                 </div>
 

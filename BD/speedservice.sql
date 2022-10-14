@@ -94,6 +94,40 @@ INSERT INTO `fotos_vehiculo` VALUES (52,'alumbrado.png',23),(53,'animales.png',2
 UNLOCK TABLES;
 
 --
+-- Table structure for table `notificaciones`
+--
+
+DROP TABLE IF EXISTS `notificaciones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notificaciones` (
+  `idNotificacion` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(250) NOT NULL,
+  `idUsuarioNotificado` int(11) NOT NULL,
+  `idSolicitud` int(11) NOT NULL,
+  `idProveedor` int(11) NOT NULL,
+  `visto` tinyint(4) NOT NULL,
+  PRIMARY KEY (`idNotificacion`),
+  KEY `FK_usuarioNotificado` (`idUsuarioNotificado`),
+  KEY `FK_usuarioProveedor` (`idProveedor`),
+  KEY `FK_solicitud` (`idSolicitud`),
+  CONSTRAINT `relacion_notificacion_proveedor` FOREIGN KEY (`idProveedor`) REFERENCES `usuarios` (`idUsuario`),
+  CONSTRAINT `relacion_notificacion_solicitud` FOREIGN KEY (`idSolicitud`) REFERENCES `solicitud_servicio` (`idSolicitud`),
+  CONSTRAINT `relacion_notificacion_usuario_notificado` FOREIGN KEY (`idUsuarioNotificado`) REFERENCES `usuarios` (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notificaciones`
+--
+
+LOCK TABLES `notificaciones` WRITE;
+/*!40000 ALTER TABLE `notificaciones` DISABLE KEYS */;
+INSERT INTO `notificaciones` VALUES (1,'asdasda',2,9,3,0);
+/*!40000 ALTER TABLE `notificaciones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `rol`
 --
 
@@ -136,6 +170,7 @@ CREATE TABLE `servicios` (
   `likes` int(11) DEFAULT NULL,
   `idEstadoServicio` int(11) NOT NULL,
   `idUsuario` int(11) NOT NULL,
+  `precioServicio` decimal(10,2) NOT NULL,
   PRIMARY KEY (`idServicio`),
   KEY `FK_Estado_Servicio` (`idEstadoServicio`),
   KEY `FK_categoria` (`idCategoria`),
@@ -154,8 +189,44 @@ CREATE TABLE `servicios` (
 
 LOCK TABLES `servicios` WRITE;
 /*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
-INSERT INTO `servicios` VALUES (9,'Fletes Mario','Fletes y Mudanzas.','09 a 20',1,23,'2022-09-26 12:38:46','500km',NULL,1,3);
+INSERT INTO `servicios` VALUES (9,'Fletes Mario Perez','Fletes y Mudanzas.','09 a 20',1,23,'2022-09-26 12:38:46','500km',NULL,2,3,500.00);
 /*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `solicitud_servicio`
+--
+
+DROP TABLE IF EXISTS `solicitud_servicio`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `solicitud_servicio` (
+  `idSolicitud` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date NOT NULL,
+  `hora` varchar(250) NOT NULL,
+  `descripcion` text NOT NULL,
+  `precioServicio` decimal(10,2) NOT NULL,
+  `idCliente` int(11) NOT NULL,
+  `idEstado` int(11) NOT NULL,
+  `idServicio` int(11) NOT NULL,
+  PRIMARY KEY (`idSolicitud`),
+  KEY `FK_Cliente` (`idCliente`),
+  KEY `FK_estado` (`idEstado`),
+  KEY `FK_servicio` (`idServicio`),
+  CONSTRAINT `relacion_solicitud_cliente` FOREIGN KEY (`idCliente`) REFERENCES `usuarios` (`idUsuario`),
+  CONSTRAINT `relacion_solicitud_estado` FOREIGN KEY (`idEstado`) REFERENCES `estado_servicio` (`idEstadoServicio`),
+  CONSTRAINT `relacion_solicitud_servicio` FOREIGN KEY (`idServicio`) REFERENCES `servicios` (`idServicio`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `solicitud_servicio`
+--
+
+LOCK TABLES `solicitud_servicio` WRITE;
+/*!40000 ALTER TABLE `solicitud_servicio` DISABLE KEYS */;
+INSERT INTO `solicitud_servicio` VALUES (1,'2022-10-20','16 horas.','Flete para Av. San Martin 334 a Repulica 1029',500.00,3,1,9),(2,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(3,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(4,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(5,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(6,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(7,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(8,'2022-10-15','asddas','asdasda',500.00,2,1,9),(9,'2022-10-15','asddas','asdasda',500.00,2,1,9);
+/*!40000 ALTER TABLE `solicitud_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -214,7 +285,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'flan.jpg','Manuel Diaz','manu@gmail.com','','4564564654','32659879','asdasdasd 123','1990-05-02','2022-09-01 20:19:36',1,''),(2,'20220613_190301.jpg','Florencia Perez','prueba@gmail.com','$2y$10$0edUJAL5N4074mHvM..YJuNhRwnWgMbvVo1OJlYrt7siCZZYhihiq','4564-654546','35989656','Av. san martin 334','2006-09-04','2022-09-05 11:22:17',1,''),(3,'team-4.jpg','Federico Paez','fede@gmail.com','$2y$10$9x/7rZyYPAvQt0G7UVm51.XtkkpIvergqhlsNrOMsOnYoCcKK4Vtq','2364-569865','32656989','Av. Libertador 335','2006-02-02','2022-09-05 12:28:02',1,'TRUE'),(4,'team-4.jpg','Fran Perez','fran@gmail.com','$2y$10$nVxe6Px/FDVwNBd/ddiNZufV9bIgwxWS1TpAkOaINQCvt2YZR69x2','2365-659865','32656989','Av. Suipacha 32','2000-02-02','2022-09-05 12:32:30',3,'TRUE');
+INSERT INTO `usuarios` VALUES (1,'flan.jpg','Manuel Diaz','manu@gmail.com','','4564564654','32659879','asdasdasd 123','1990-05-02','2022-09-01 20:19:36',1,''),(2,'20220613_190301.jpg','Florencia Perez','prueba@gmail.com','$2y$10$0edUJAL5N4074mHvM..YJuNhRwnWgMbvVo1OJlYrt7siCZZYhihiq','4564-654546','35989656','Av. san martin 334','2006-09-04','2022-09-05 11:22:17',1,'TRUE'),(3,'team-4.jpg','Federico Paez','fede@gmail.com','$2y$10$9x/7rZyYPAvQt0G7UVm51.XtkkpIvergqhlsNrOMsOnYoCcKK4Vtq','2364-569865','32656989','Av. Libertador 335','2006-02-02','2022-09-05 12:28:02',1,'TRUE'),(4,'team-4.jpg','Fran Perez','fran@gmail.com','$2y$10$nVxe6Px/FDVwNBd/ddiNZufV9bIgwxWS1TpAkOaINQCvt2YZR69x2','2365-659865','32656989','Av. Suipacha 32','2000-02-02','2022-09-05 12:32:30',3,'TRUE');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,4 +332,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-26 13:03:12
+-- Dump completed on 2022-10-13 20:54:45

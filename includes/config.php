@@ -1,5 +1,5 @@
 <?php 
 
-define('RUTARAIZ','http://localhost/proyectos/speedservice');
+define('RUTARAIZ','http://localhost/proyectos/speedservice/ramamale');
 
 ?>

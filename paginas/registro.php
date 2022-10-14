@@ -181,7 +181,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     </div>
 
                                        
-                    <button type="submit" id="btnEnviar" class="d-none btn d-grid gap-2 col-5 mx-auto boton-servicio">Enviar solicitud</button>
+                    <button type="submit" id="btnEnviar" class="d-none btn d-grid gap-2 col-5 mx-auto boton-servicios">Enviar solicitud</button>
                     
 
                 </form>

@@ -148,12 +148,7 @@ header .cta:hover{
     object-fit: cover;
 }
 
-.boton-servicio{
-    border-radius: 20px;
-    opacity: .9;
-    background-color: #fa0050;
-    color: white;
-}
+
 .boton-servicios{
     border-radius: 20px;
     opacity: .9;
@@ -236,20 +231,6 @@ footer .copyright{
     text-align: justify;
 }
 
-/* PAGINA SERVICIOS */
-.pagina-servicios{
-    padding-top: 6rem!important;
-    background-color: #f2f2f2;
-}
-.pagina-servicios .columna-servicios{
-    background-color: #fff;
-    padding: 1rem;
-}
-.pagina-servicios .columna-servicios .servicio-1, .pagina-servicios .columna-servicios .servicio-2{
-    border-right: 1px solid;
-}
-
-
 /* PAGINA INGRESAR */
 .pagina-ingresar{
     padding-top: 4.5rem!important;
@@ -313,6 +294,11 @@ footer .copyright{
 }
 .alta-categorias h1, label{
     color: #f2f2f2;
+}
+.alta-categorias .imagen-servicios-usuario{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
 }
 .boton-crear-categoria{
     border-radius: 20px;
@@ -406,7 +392,6 @@ footer .copyright{
     border-radius: 50%;
     justify-content: center;
     align-items: center;
-    border: 2px solid #fa0050;
     margin: 2rem 0;
 }
 .texto-usuario{
@@ -418,4 +403,111 @@ footer .copyright{
     padding: 0.5rem;
     background-image: linear-gradient(to left, rgba(226, 88, 53, 0.884) 0%, rgba(211, 7, 68, 0.877) 50%);
     border-radius: 9px;
+}
+
+/* PÁGINA FLETE + DETALLE SERVICIO */
+
+/* HOVER "SOLICITAR SERVICIO" */
+.ov-btn-slide-left {
+    background: #fa0050;
+    color: white; 
+    padding: 7px;
+    border-radius: 15px; 
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .ov-btn-slide-left:hover {
+    color: white; /* color de fuente hover */
+    font-weight: bold;
+  }
+  .ov-btn-slide-left::after {
+    content: "";
+    background: #b30039; /* color de fondo hover */
+    position: absolute;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    right: 100%;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+  }
+  .ov-btn-slide-left:hover::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+  }
+
+.tarjeta-servicio .boton-servicios2{
+    border-radius: 15px;
+    background-color: grey!important;
+    color: white;
+    font-style: italic;
+    padding: 7px;
+    margin: 0px 3px;
+}
+.boton-servicios2:hover{
+    color: white;
+    font-weight: bold;
+    opacity: .9;
+}
+.detalles-servicio{
+    padding-top: 5rem;
+    min-height: 70vh;
+    background: url(../img/detalle-servicio.jpg) no-repeat center center;
+    background-size: cover;
+    color: white;
+}
+.detalles-servicio .imagen-servicios-usuario{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+.img-detalle-servicio{
+    max-width: 100%;
+    max-height: 125px;
+    border-radius: 8px;
+}
+.detalles-servicio .icono-modificar{
+    padding: 0.5rem 0.5rem;
+    background-color: #fa0050;
+    color: #fff;
+    border-radius: 50%;
+}
+.detalles-servicio .icono-viñeta{
+    color: #fa0050;
+}
+
+/* PAGINA PARA LOS TRES SERVICIOS */
+.pagina-servicios{
+    padding-top: 6rem!important;
+    background: url(../img/detalle-servicio.jpg) no-repeat center center;
+    background-size: cover;
+}
+.pagina-servicios .columna-servicios{
+    background-color: #fff;
+    padding: 1rem;
+}
+.pagina-servicios .columna-servicios .servicio-1, .pagina-servicios .columna-servicios .servicio-2{
+    border-right: 1px solid;
+}
+.pagina-servicios .imagen-servicios-usuario{
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    border-radius: 50%;
+}
+.pagina-servicios .imagen-servicios-vehiculo{
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
 }

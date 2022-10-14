@@ -38,7 +38,7 @@ formularioRegistro.addEventListener('submit',(e) => {
 });
 
 /***************************************/
-/******** VALIDACION DEL CORREO *******/
+/******** VALIDACIÓN DEL CORREO *******/
 
 function validacionCorreo(){
     var codigo = rand_code('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',6),
@@ -87,7 +87,7 @@ function validacionCorreo(){
     })
 }
 
-  // FUNCION PARA ARMAR UN CODIGO RANDOM  
+  // FUNCIÓN PARA ARMAR UN CÓDIGO RANDOM  
 function rand_code(chars, lon){
     code = "";
     for (x=0; x < lon; x++){
