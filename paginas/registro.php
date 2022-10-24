@@ -82,7 +82,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             /* LISTAR USUARIO POR CORREO  */
             
-            $stmt = $conexion->prepare("INSERT INTO usuarios(imgUsuario, nombreCompleto, correo, password, telefono, dni, direccion, fechaNacimiento, idRol) VALUES (:imgUsuario,:nombre,:correo,:password,:telefono,:dni,:direccion,:fecha,1)");
+            $stmt = $conexion->prepare("INSERT INTO usuarios(imgUsuario, nombreCompleto, correo, password, telefono, dni, direccion, fechaNacimiento, idRol,verificado) VALUES (:imgUsuario,:nombre,:correo,:password,:telefono,:dni,:direccion,:fecha,1,'TRUE')");
             $passHash = password_hash($_POST['pass'], PASSWORD_BCRYPT);
             $resultado = $stmt->execute(array(':imgUsuario' => $img, ':nombre' => $nombreCompleto, ':correo' => $correoCliente,':password' => $passHash,':telefono'=> $telefonoCliente, ':dni' => $dniCliente, ':direccion' => $direccionCliente, ':fecha' => $fechaNacimiento));
 
@@ -151,7 +151,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             <input type="text" class="form-control" id="codigo" name="codigo" required>
                         </div>
                       
-                        <button type="button" id="btnCodigo" onclick="validacionCorreo()" class="btn d-grid gap-2 col-6 mx-auto boton-servicio">Solicitar código</button>
+                        <button type="button" id="btnCodigo" onclick="validacionCorreo()" class="btn d-grid gap-2 col-6 mx-auto boton-servicios">Solicitar código</button>
 
                     </div>
 
@@ -204,7 +204,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }else if(exitoServidor)
     {
         alert(exitoServidor); 
-        window.location.href = '/paginas/ingresar.php';
+        window.location.href = 'ingresar.php';
         
     }
 

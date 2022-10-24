@@ -8,10 +8,22 @@ if(!isset($_SESSION['idUsuario']) || $_SESSION['idRol'] != 3){
 $pagina = 'listado-servicios';
 require_once('../../includes/config.php');
 require_once('../../includes/conexion.php');
+if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['idUsuario'])){
+    $idUsuario = $_GET['idUsuario'];
+    $stmt = $conexion->prepare("SELECT idServicio, nombreServicio, descripcionServicio, categoria, fechaAltaServicio, alcance, estadoServicio, patente, imgUsuario, img_seguro, img_vtv, capacidad, tipo, nombreCompleto, telefono, correo, servicios.idVehiculo, categorias.idCategoria FROM servicios INNER JOIN categorias ON categorias.idCategoria = servicios.idCategoria INNER JOIN estado_servicio ON estado_servicio.idEstadoServicio = servicios.idEstadoServicio INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo = vehiculos.idTipo WHERE usuarios.idUsuario = :idUsuario");
+    $stmt->execute(array(':idUsuario' => $idUsuario));
+    $datosServicio = $stmt->fetch();
+    $nombreServicio = $datosServicio['nombreServicio'];
+    $categoria = $datosServicio['idCategoria']; 
+    $descripcionServicio = $datosServicio['descripcionServicio'];
+    $tipoVehiculoServicio = $datosServicio['tipo'];
 
-if($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_GET['id'])){
-    header('Location:../index.php');
+    /* ACCEDER A LAS IMÁGENES DEL VEHÍCULO */
+    $stmt = $conexion->prepare('SELECT * FROM fotos_vehiculo WHERE idVehiculo = :idVehiculo');
+    $stmt->execute(array(':idVehiculo' => $datosServicio['idVehiculo']));
+    $fotosVehiculo = $stmt->fetchAll();
 }
+
 if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])){
     $idServicio = $_GET['id'];
     $stmt = $conexion->prepare("SELECT idServicio, nombreServicio, descripcionServicio, categoria, fechaAltaServicio, alcance, estadoServicio, patente, imgUsuario, img_seguro, img_vtv, capacidad, tipo, nombreCompleto, telefono, correo, servicios.idVehiculo, categorias.idCategoria FROM servicios INNER JOIN categorias ON categorias.idCategoria = servicios.idCategoria INNER JOIN estado_servicio ON estado_servicio.idEstadoServicio = servicios.idEstadoServicio INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo = vehiculos.idTipo WHERE idServicio = :idServicio");
@@ -192,7 +204,7 @@ require_once('../../includes/header.php');
                    
                 </div>
             </div>
-            <button type="submit" class="btn col-md-4 mx-auto mt-4 boton-servicios"> Actualizar Datos </button>
+            <button type="submit" class="btn col-md-4 mx-auto mt-4 boton-servicios"> Actualizar datos </button>
         </form>   
     </div>
 </section>

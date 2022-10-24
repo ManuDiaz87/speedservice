@@ -76,7 +76,7 @@ function validacionCorreo(){
             }else{
                 swal({
                     title: "Ha ocurrido un error",
-                    text: "No se ha procesado la solicitud, vuelva a intentarlo.",
+                    text: "No se ha procesado la solicitud, vuelve a intentarlo.",
                     icon: 'error'
                     });
             }

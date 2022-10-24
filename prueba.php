@@ -1,4 +1,16 @@
 <?php 
+session_start();
+echo($_SESSION['idRol']);
+
+
+ $hash = '$2y$10$nVxe6Px/FDVwNBd/ddiNZufV9bIgwxWS1TpAkOaINQCvt2YZR69x2';
+
+ if (password_verify('456', $hash)) {
+ echo 'La contraseña es válida!';
+ } else {
+  echo 'La contraseña no es válida.';
+ }
+  
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $img = $_FILES['imgPerfil']['name'];

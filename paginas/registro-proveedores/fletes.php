@@ -95,7 +95,7 @@ require_once('../../includes/header.php');
                <div class="col-4 form-usuario d-flex flex-column align-items-center">
                    <?php echo '<h3 class="texto-usuario text-center">'.'Bienvenid@, '  .$_SESSION['nombre'].'</h3>';?>
                    <img src="<?php echo RUTARAIZ.'/img/usuarios/'.$_SESSION['imgUsuario'] ?>" alt="avatar" class="imagen_usuario m-0">
-                   <p class="text-center texto-usuario"><i>Ya puedes registrar tu servicio. Los datos ingresados serán validados por los administradores del sitio.</i></p>
+                   <p class="text-center texto-usuario"><i>Ya podés registrar tu servicio. Los datos ingresados serán validados por los administradores del sitio.</i></p>
                </div>
 
                <div class="col-8">
@@ -128,7 +128,7 @@ require_once('../../includes/header.php');
                         <div class="col-12 col-md-6">
 
                         <div class="mb-3">
-                                <label for="alcance">Alcance (kms. a la redonda):</label>
+                                <label for="alcance">Alcance (km a la redonda):</label>
                                 <select class="form-control form-select-sm" aria-label=".form-select-sm example" required id="alcance" name="alcance">
                                     <option selected>Desde... Hasta...</option>
                                     <option value="50">0 - 50</option>
@@ -155,7 +155,7 @@ require_once('../../includes/header.php');
                             </div>
 
                             <div class="mb-3">
-                                <label for="idTipo">Tipo de vehiculo</label>
+                                <label for="idTipo">Tipo de vehículo:</label>
                                 <select name="idTipo" id="idTipo" class="form-select" required>
                                     
                                     <?php 
@@ -169,7 +169,7 @@ require_once('../../includes/header.php');
                             </div>
 
                             <div class="mb-3">
-                                <label for="descripcionCapacidad">Capacidad de carga (kg.):</label>
+                                <label for="descripcionCapacidad">Capacidad de carga (kg):</label>
                                 <textarea name="descripcionCapacidad" id="descripcionCapacidad" rows="6" class="form-control" required></textarea>
                             </div>
 

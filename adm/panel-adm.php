@@ -30,12 +30,11 @@ require_once('../includes/header.php');
                 </div>
                 <div class="col-12 col-md-4 text-center">
                     <h3 class="mb-3">Servicios</h3>
-                    <a href="#" class="btn boton-agregar">Agregar</a>
                     <a href="servicios/listado.php" class="btn boton-mostrar">Mostrar</a>
                 </div>
                 <div class="col-12 col-md-4 text-center">
                     <h3 class="mb-3">Usuarios</h3>
-                    <a href="#" class="btn boton-mostrar">Mostrar</a>
+                    <a href="usuarios/listado.php" class="btn boton-mostrar">Mostrar</a>
                 </div>
             </div>
         </div>

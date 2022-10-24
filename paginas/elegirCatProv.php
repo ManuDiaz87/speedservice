@@ -18,11 +18,11 @@ $categorias = $stmt->fetchAll();
 require_once('../includes/header.php');
 ?>
 
-<main class="cardProvedor">
+<main class="card-proveedor">
 <div class="container">
-    <h1 class="text-center text-light py-4">¿Qué servicio querés ofrecer?</h1>
+    <h1 class="text-center text-light py-3">¿Qué servicio querés ofrecer?</h1>
       
-    <div class="row py-3">
+    <div class="row py-4">
 
         <?php
             foreach($categorias as $fila)

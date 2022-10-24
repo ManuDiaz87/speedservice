@@ -16,6 +16,26 @@
     <title>SpeedService</title>
 </head>
 <body>
+  <?php 
+  if(isset($_SESSION['idRol'])&& $_SESSION['idRol'] == 1)
+  {
+    require_once('conexion.php');
+    $stmt = $conexion->prepare("SELECT COUNT(*) as totalRegistro FROM solicitud_servicio 
+    INNER JOIN notificaciones ON solicitud_servicio.idSolicitud = notificaciones.idSolicitud
+    WHERE notificaciones.visto = 1;");
+    $stmt->execute();
+    $resultado = $stmt->fetch();
+    $notificaciones = $resultado['totalRegistro'];
+  }
+  if(isset($_SESSION['idRol'])&& $_SESSION['idRol'] == 2)
+  {
+    require_once('conexion.php');
+    $stmt = $conexion->prepare("SELECT COUNT(*) as totalNotificaciones FROM notificaciones WHERE visto = 0 AND idProveedor = :idProveedor");
+    $stmt->execute(array(':idProveedor' => $_SESSION['idUsuario']));
+    $resultado = $stmt->fetch();
+    $notificaciones = $resultado['totalNotificaciones'];
+  }
+  ?>
     
     <!-- ENCABEZADO -->
     <header>
@@ -35,35 +55,38 @@
                     <a class="nav-link <?php echo ($pagina == 'inicio') ? 'active' : ''; ?>" aria-current="page" href="<?php echo RUTARAIZ; ?>">Inicio</a>
                   </li>
 
-                  <li class="nav-item">
-                    <a class="nav-link <?php echo ($pagina == 'servicios') ? 'active' : ''; ?>" href="<?php echo RUTARAIZ; ?>/paginas/servicios.php">Servicios</a>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/serviciosFlete.php"><i class="fa-solid fa-arrow-right"></i> Fletes</a></li>
+                      <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/serviciosRemis.php"><i class="fa-solid fa-arrow-right"></i> Remis</a></li>
+                      <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/serviciosMandado.php"><i class="fa-solid fa-arrow-right"></i> Mandados</a></li>
+                    </ul>
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Nosotros</a>
-                  </li>
-                  
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contacto</a>
+                    <a class="nav-link" href="<?php echo RUTARAIZ; ?>/paginas/nosotros.php">Nosotros</a>
                   </li>
 
                   <?php if(!isset($_SESSION['idUsuario'])) : ?>
                     <li class="nav-item">
                       <a class="nav-link" href="<?php echo RUTARAIZ; ?>/paginas/ingresar.php">Ingresar</a>
                     </li>
-                  <?php else: ?>
+                  <?php else:  ?>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="<?php echo RUTARAIZ.'/img/usuarios/'.$_SESSION['imgUsuario'] ?>" alt="avatar" class="img-avatar">
                       </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <?php if($_SESSION['idRol'] == 3) : ?>
                         <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/adm/panel-adm.php">Panel de control</a></li>
                         <?php endif; ?>
                         <?php if($_SESSION['idRol'] == 1 ) : ?>
-                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/elegirCatProv.php">Ser proveedor</a></li>
+                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/elegirCatProv.php"><i class="fa-solid fa-handshake"></i> Ser proveedor</a></li>
                         <?php endif; ?>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <?php if($_SESSION['idRol'] == 1 ||$_SESSION['idRol'] == 2 ) : ?>
+                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/listNotProv.php"><i class="fa-solid fa-bell"></i> Notificaciones <span class="badge boton-servicios"><?php echo (isset($notificaciones))?$notificaciones : 0; ?></span></a></li>
+                        <?php endif; ?>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/procesos/cerrar-sesion.php"><i class="fa-solid fa-lock"></i> Cerrar Sesión</a></li>
                       </ul>

@@ -56,7 +56,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $stmt = $conexion->prepare("INSERT INTO notificaciones(descripcion, idUsuarioNotificado, idSolicitud, idProveedor, visto) VALUES (:descripcionNotificacion, :idClienteNotificado, :idSolicitud, :idProveedorNotificado, 0)");
 
             $stmt->execute(array(':descripcionNotificacion' => $descripcion, ':idClienteNotificado' => $idCliente, ':idSolicitud' => $idSolicitud, ':idProveedorNotificado' => $idProveedor));
-            
+            header('Location:../index.php');
 
         }
     }
@@ -68,7 +68,6 @@ require_once('../includes/header.php');
 
 <section class="detalles-servicio py-5">
     <div class="container">
-
         <h1 class="text-center py-5">Detalle del Servicio</h1>  
 
         <?php 
@@ -82,22 +81,18 @@ require_once('../includes/header.php');
 
         <form action="detalleServicio.php" method="POST" class="bg-white p-4 form-detalle">
         <div class="row">
-            
-            <div class="col-6 col-md-12">
-                <h4 class="mb-2 text-black"><i class="fa-solid fa-user icono-modificar"></i> Conductor </h4>
-                <div class="mb-6 text-center">
-                    <img src="../img/usuarios/<?php echo $datosServicio['imgUsuario'];?>" class="card-img-top img-fluid imagen-servicios-usuario mb-3" alt="imgUsuario"> 
-                    <h5 class="text-dark text-center"><?php echo $datosServicio['nombreCompleto']; ?></h5>                             
-                </div>
-            
-                <hr class="border border-danger border-2 opacity-40">
+            <div class="col-4 col-conductor">
+                <h4 class="py-1 text-black"><i class="fa-solid fa-user icono-modificar"></i> Conductor </h4>
+            <div class="col-4 col-md-12 text-center">
+                <img src="../img/usuarios/<?php echo $datosServicio['imgUsuario'];?>" class="card-img-top img-fluid imagen-servicios-usuario mb-2 text-center" alt="imgUsuario"> 
+                <h5 class="text-dark text-center"><?php echo $datosServicio['nombreCompleto']; ?></h5>                             
             </div>
-
+            </div>
             
-            
+        <div class="col-8">
             <div class="col-12 col-md-12">
-                <h4 class="mt-2 mb-4 py-2 text-dark"><i class="fa-solid fa-car icono-modificar"></i> Vehículo </h4>
-                    <div class="mb-4 mt-1">
+                <h4 class="py-2 text-dark"><i class="fa-solid fa-car icono-modificar"></i> Vehículo </h4>
+                    <div class="text-center">
                         <?php 
                             foreach ($fotosVehiculo as $foto) {
                                 echo '
@@ -107,20 +102,21 @@ require_once('../includes/header.php');
                         ?>
                     </div>
 
-                    <div class="mb-4 mt-2">
+                    <div class="mb-1 mt-1">
                         <p class="text-dark"><i class="fa-solid fa-check icono-viñeta"></i><b> Patente: </b><?php echo $datosServicio['patente'];?></p>
 
                         <p class="text-dark"><i class="fa-solid fa-check icono-viñeta"></i><b> Tipo: </b><?php echo $tipoVehiculoServicio;?></p>
 
-                        <p class="text-dark"><i class="fa-solid fa-check icono-viñeta"></i><b> Capacidad (en kg.): </b><?php echo $datosServicio['capacidad'];?></p>
+                        <p class="text-dark"><i class="fa-solid fa-check icono-viñeta"></i><b> Capacidad (en kg): </b><?php echo $datosServicio['capacidad'];?></p>
                     </div>
                 
-                    <hr class="border border-danger border-2 opacity-40">
-                </div>
+                <hr class="border border-danger border-2 opacity-40">
+
+            </div>
                 
             <div class="col-12 col-md-12">
-                <h4 class="mt-1 mb-4 py-2 text-dark"><i class="fa-solid fa-circle-info icono-modificar"></i> Acerca del servicio </h4>
-                <div class="mb-2">
+                <h4 class="py-1 text-dark"><i class="fa-solid fa-circle-info icono-modificar"></i> Acerca del servicio </h4>
+                <div class="mb-1">
                 
                 <p class="text-dark"><i class="fa-solid fa-check icono-viñeta"></i><b> Nombre: </b><i><?php echo $datosServicio['nombreServicio']; ?></i></p>
 
@@ -130,37 +126,35 @@ require_once('../includes/header.php');
                 
                 <p class="text-dark"><i class="fa-solid fa-check icono-viñeta"></i><b> Activo desde: </b><?php echo $fechaSolicitud = date("d-m-Y", strtotime($datosServicio['fechaAltaServicio'])); ?></p>
 
-                <p class="text-dark"><i class="fa-solid fa-check icono-viñeta"></i><b> Alcance (en km.): </b><?php echo $datosServicio['alcance'];?></p>
+                <p class="text-dark"><i class="fa-solid fa-check icono-viñeta"></i><b> Alcance (en km): </b><?php echo $datosServicio['alcance'];?></p>
 
                 <p class="text-dark"><i class="fa-solid fa-check icono-viñeta"></i><b> Descripción: </b><i><?php echo $datosServicio['descripcionServicio'];?></i></p>               
-            </div>
-
-            <hr class="border border-danger border-2 opacity-40">
-            
-            <input type="hidden" name="idServicio" value="<?php echo (isset($idServicio)) ? $idServicio : '' ?>">
-            <input type="hidden" name="precioServicio" value="<?php echo (isset($precioServicio)) ? $precioServicio : '' ?>">
-            <input type="hidden" name="idProveedor" value="<?php echo (isset($idProveedor)) ? $idProveedor : '' ?>">
-
-            <div>
-                <label for="" class="text-dark">Fecha </label>
-                <input type="date" class="form-control" name="fecha">
-            </div>
-            <div>
-                <label for="" class="text-dark">Hora </label>
-                <input type="text" class="form-control" name="hora">
-            </div>
-            <div>
-                <label for="" class="text-dark">Descripción </label>
-                <textarea id="" cols="30" rows="10" class="form-control" name="descripcion"></textarea>
-            </div>
-               
-            <div class="text-center p-3">   
-                    <button type="submit" class="btn boton-servicios"> Solicitar Servicio </button>
                 </div>
+            </div>
             
-        </form>     
+        </form> 
+           
     </div>
-    
+
+    <input type="hidden" name="idServicio" value="<?php echo (isset($idServicio)) ? $idServicio : '' ?>">
+    <input type="hidden" name="idServicio" value="<?php echo (isset($idServicio)) ? $idServicio : '' ?>">
+    <input type="hidden" name="precioServicio" value="<?php echo (isset($precioServicio)) ? $precioServicio : '' ?>">
+    <input type="hidden" name="idProveedor" value="<?php echo (isset($idProveedor)) ? $idProveedor : '' ?>">
+
+    <div class="mt-3 col-12 col-md-6 fondo-formulario"> 
+        <label for="" class="text-dark"><b>Fecha:</b></label>
+        <input type="date" class="form-control" name="fecha">
+        <label for="" class="text-dark"><b>Hora:</b></label>
+        <input type="text" class="form-control" name="hora">
+    </div>
+    <div class="mt-3 col-8 col-md-6 fondo-formulario">
+        <label for="" class="text-dark"><b>Descripción</b> (ej. domicilio, destino...)<b>:</b></label>
+        <textarea id="" cols="30" rows="10" class="form-control" name="descripcion"></textarea>
+    </div>
+               
+    <div class="mt-3 col-12 col-md-12 " id="form" >   
+            <button type="submit" class="btn boton-servicios d-grid gap-2 col-4 mx-auto"> Solicitar servicio </button>
+    </div> 
 </section>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

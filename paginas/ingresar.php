@@ -42,10 +42,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     }
                     
                 }else{
-                    $notificacion = "Error: La contraseña ingresada es incorrecta.";
+                    $notificacion = "Error: la contraseña ingresada es incorrecta.";
                 }
             }else{
-                $notificacion = "Error: El correo ingresado no ha sido verificado.";
+                $notificacion = "Error: el correo ingresado no ha sido verificado.";
             }
         }
        
@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <div class="row">
 
                 <div class="col-md-5">
-                    <h2 class="mb-1 text-center"><b>Ingresa tus datos y navega en la app</b></h2><br>
+                    <h2 class="mb-1 text-center"><b>Ingresá tus datos y navegá en la app</b></h2><br>
                     <p class="text-center">¿Estás listo para una nueva experiencia?<br>
                         <i>Speedservice</i> te ofrece publicar o solicitar un remis, mandado o flete desde la web.</p>
                 </div>
@@ -71,12 +71,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         <div class="mb-3">
                             <label for="correoCliente">Correo electrónico:</label>
                             <input type="text" class="form-control" id="correoCliente" name="correoCliente">
-                            <p class="text-white bg-danger msj-error">Error: El nombre debe tener al menos 6 caracteres.</p>
+                            <p class="text-white bg-danger msj-error">Error: el nombre debe tener al menos 6 caracteres.</p>
                         </div>
                         <div class="mb-3">
                             <label for="passCliente">Contraseña:</label>
                             <input type="password" class="form-control" id="passCliente" name="passCliente">
-                            <p class="text-white bg-danger msj-error">Error: El nombre debe tener al menos 6 caracteres.</p>
+                            <p class="text-white bg-danger msj-error">Error: el nombre debe tener al menos 6 caracteres.</p>
                         </div>
                         <?php 
                         if(isset($notificacion)){
